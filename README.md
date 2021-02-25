@@ -21,7 +21,7 @@ We will explain how to do the all these updates, and you can also read the comme
 
 After updating the code, your IoB station is ready for the Banana Jam!
 
-**Attention**: The IoB devices contains fragile parts, be careful when handling them. Avoid place them in a metal surface, you can short-circuit the microcontroller and sensors, and damage them.
+**Attention**: The IoB devices contains fragile parts, be careful when handling them. Do not place them in a metal or conductive surface, you can short-circuit the microcontroller and sensors, and damage them.
 
 ## 1. Installation of Arduino IDE
 To update the code it is necessary to download the *Arduino IDE* - the software that allows writing and sending code to the Arduino microcontroller, NodeMCU Esp8266, among others.
