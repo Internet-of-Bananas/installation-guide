@@ -9,7 +9,7 @@ The IoB is based on the microcontroller NodeMCU Esp8266 with the color sensor TC
 
 To publish the data in Adafruit IO it's necessary to create an account - you can create one in this link: [https://accounts.adafruit.com/users/sign_up](https://accounts.adafruit.com/users/sign_up). Then you will have a user name and key that will be used in the code to publish the data. In the Adafruit IO vocabulary, the data's name is called *feed*, so there will be three feeds, color, temperature and humidity. Only you have control on the data that is published in your account - in the appropriate time, we will kindly ask you to set your feeds as *public*, so we can show them in the global map on our website. =)
 
-![Schematic diagram](https://drive.google.com/uc?export=view&id=1LpIFhPiTVFzD0ErvvocMIws-D-d8hxrt "Schematic diagram")
+![Schematic diagram of the Internet of Bananas](https://drive.google.com/uc?export=view&id=1LpIFhPiTVFzD0ErvvocMIws-D-d8hxrt "Schematic diagram of the IoB")
 
 We have already developed the code to be used in the IoB project, however each participant has to update it with the following information:
 - the name and the password of your Wi-Fi network to connect to the internet;
