@@ -60,12 +60,12 @@ Then select the menu command `Skecth> Upload`, or press `Ctrl + U` or `Command+U
 
 To experiment with different intervals, replace the value of `delay (1000);` for example:
 
-```
-void loop () {
-  digitalWrite (D4, HIGH); // turn the LED on (HIGH is the voltage level)
-  delay (500); // wait for a second
-  digitalWrite (D4, LOW); // turn the LED off by making the voltage LOW
-  delay (2000); // wait for a second
+```// the loop function runs over and over again forever
+void loop() {
+  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+  delay(1000);                       // wait for a second
+  digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+  delay(1000);                       // wait for a second
 }
 ```
 
@@ -126,10 +126,7 @@ To access the Adafruit IO server you need to specify the user name and the key. 
 
 Replace `username` with the user name of your account at Adafruit IO, and `key` with your account's key.
 
-
-
-
-### 3.4. Upload the code to the NodeMCU Esp8266
+### 3.3. Upload the code to the NodeMCU Esp8266
 After completing the code updates, connect the NodeMCU board to the computer with the USB cable. In the Arduino IDE, select the menu `Skecth>Upload`, or press `Ctrl + U` or `Command + U`. 
 
 To check if the code updates were successful, select `Tools>Serial monitor`. In the window that opens, in the lower right corner, select speed `9600`.
@@ -141,3 +138,9 @@ As the data is sent, the confirmation `Ok, sent!` is displayed for each feed in 
 In addition to these verification modes, you can check the feeds at [Adafruit IO](https://io.adafruit.com/) to see if the data is arriving.
 
 After confirming that the updates have been well succeeded, you are ready to go for the Banana Jam!
+
+## 4. Create a dashboard at Adafruit IO
+To visualize the data from your IoB you can create a dashboard at Adafruit IO platform.
+
+## 5. Assembling the device on the banana
+The NodeMCU board and the sensors should be attached to the banana...
