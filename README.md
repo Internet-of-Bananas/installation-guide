@@ -102,17 +102,18 @@ Before sending the code to ESP8266, you need to make three changes:
 ### 3.1. The WiFi credentials
 To connect to the internet you need to specift the name and password of your WiFi network. To update the sketch with your name and password, locate the code below:
 
-``/************************* WiFi Access Point *********************************/
+```/************************* WiFi Access Point *********************************/
 
 #define WLAN_SSID      "wifiName"     //  Name of the WiFi network.
-#define WLAN_PASS      "wifiPassword" //  WiFi password.``
+#define WLAN_PASS      "wifiPassword" //  WiFi password.
+```
 
 Replace the `wifiName` with your WiFi name, and `wifiPassword` with your WiFi password, keeping the quotes. Write exactly how it is, with space and upper and lower case, if there's any.
 
 ### 3.2. Adafruit IO credentials
 To access the Adafruit IO server you need to specify the user name and the key. If you don't have one, you can create it here [// https://accounts.adafruit.com/users/sign_up](https://accounts.adafruit.com/users/sign_up). To update the sketch, locate the code below:
 
-`` /************************* Adafruit.io Setup *********************************/
+```/************************* Adafruit.io Setup *********************************/
 // You need an account at the Adafruit IO to publish data.
 // If you don't have it, you can create one at
 // https://accounts.adafruit.com/users/sign_up
@@ -120,6 +121,23 @@ To access the Adafruit IO server you need to specify the user name and the key. 
 #define AIO_SERVER      "io.adafruit.com"       //  Address of the MQTT server from Adafruit IO, don't change.
 #define AIO_SERVERPORT  1883                    //  Number of server port from Adafruit IO.
 #define AIO_USERNAME    "username"  //  Adafruit IO user name.
-#define AIO_KEY         "key"    //  Adafruit IO user key.`` 
+#define AIO_KEY         "key"    //  Adafruit IO user key.
+``` 
 
 Replace `username` with the user name of your account at Adafruit IO, and `key` with your account's key.
+
+
+
+
+### 3.4. Upload the code to the NodeMCU Esp8266
+After completing the code updates, connect the NodeMCU board to the computer with the USB cable. In the Arduino IDE, select the menu `Skecth>Upload`, or press `Ctrl + U` or `Command + U`. 
+
+To check if the code updates were successful, select `Tools>Serial monitor`. In the window that opens, in the lower right corner, select speed `9600`.
+
+As the data is sent, the confirmation `Ok, sent!` is displayed for each feed in the Serial Monitor window. If the data is not being sent or there's an error, check if the name and password of the WiFi network and user name and key of your account at Adafruit IO are correct.
+
+**As a form of visual confirmation, the ESP8266 blue LED flashes when data is being sent.**
+
+In addition to these verification modes, you can check the feeds at [Adafruit IO](https://io.adafruit.com/) to see if the data is arriving.
+
+After confirming that the updates have been well succeeded, you are ready to go for the Banana Jam!
