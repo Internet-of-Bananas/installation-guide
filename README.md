@@ -51,12 +51,12 @@ Then select the menu `Tools> Boards> Boards Manager`. In the search field, type 
 
 After completing the installation, connect the USB cable to the NodeMCU, and the other end of the cable connect to the computer's USB.
 
-In `Tools> Boards` menu, select the board` NodeMCU 1.0 (ESP-12E Module) `from the list. Again in the `Tools> Port` menu, select the *Com* port of your NodeMCU board.
+In `Tools> Boards` menu, select the board `NodeMCU 1.0 (ESP-12E Module)` from the list. Again in the `Tools> Port` menu, select the *Com* port of your NodeMCU board.
 
 ### 1.3. Verify the installation
 To test whether the installation was successful, open the menu `File> Examples> 01. Basics> Blink`.
 
-Then select the menu command `Skecth> Upload`, or press `Ctrl + U` or `Command+U` in Mac Computer. The Blink skecth will be sent to the microcontroller, and the Esp8266's internal LED will flash in a interval of 1000 milliseconds or 1 second.
+Then select the menu command `Skecth> Upload`, or press `Ctrl + U` or `Command+U` in Mac computer. The Blink skecth will be sent to the microcontroller, and the Esp8266's internal LED will flash in a interval of 1000 milliseconds or 1 second.
 
 To experiment with different intervals, replace the value of `delay (1000);` for example:
 
@@ -69,9 +69,16 @@ void loop () {
 }
 ```
 
-After the changes in the *delay*, it is necessary to update the Esp8266 by uploading the code to the board, with the command in the menu `Skecth> Upload` or press` Ctrl + U`.
+After the changes in the *delay*, it is necessary to update the Esp8266 by uploading the code to the board, with the command in the menu `Skecth> Upload` or press` Ctrl + U` or `Command+U` in Mac computer.
 
 ## 2. Add libraries to the Arduino IDE
+Libraries are additional codes that extend the functionality of the Arduino IDE for use with modules, sensors, among others, developed and shared by collaborators. In the Internet of Bananas you will need to install the following libraries:
+
+- [EWMA](https://github.com/jonnieZG/EWMA), Exponentially Weighted Moving Average, by Arsen Torbarina, to filter noise of the color sensor;
+- [Adafruit_MQTT](https://github.com/adafruit/Adafruit_MQTT_Library), by Adafruit, to access and publish data in the Adafruit IO server;
+- [DHT sensor library](https://github.com/adafruit/DHT-sensor-library) by Adafruit, to use with the DHT11 sensor. 
+
+To install the libraries on the Arduino IDE, select the menu `Sketch>Include Library>Manage Libraries`. In the search field, type the name of the library EWMA, then click the `Install` button to install the library. Repeat the same procedure to install the Adafruit_MQTT library and DHT sensor library. If there's a warning asking to install additional libraries, confirm yes to install the complementary itens.
 
 ## 3. Update the code
 
