@@ -69,7 +69,7 @@ void loop () {
 }
 ```
 
-After the changes in the *delay*, it is necessary to update the Esp8266 by uploading the code to the board, with the command in the menu `Skecth> Upload` or press` Ctrl + U` or `Command+U` in Mac computer.
+After the changes in the *delay*, it is necessary to update the Esp8266 by uploading the code to the board, with the command in the menu `Skecth> Upload` or press `Ctrl + U` or `Command+U` in Mac computer.
 
 ## 2. Add libraries to the Arduino IDE
 Libraries are additional codes that extend the functionality of the Arduino IDE for use with modules, sensors, among others, developed and shared by collaborators. In the Internet of Bananas you will need to install the following libraries:
@@ -80,6 +80,30 @@ Libraries are additional codes that extend the functionality of the Arduino IDE 
 
 To install the libraries on the Arduino IDE, select the menu `Sketch>Include Library>Manage Libraries`. In the search field, type the name of the library EWMA, then click the `Install` button to install the library. Repeat the same procedure to install the Adafruit_MQTT library and DHT sensor library. If there's a warning asking to install additional libraries, confirm yes to install the complementary itens.
 
-## 3. Update the code
+## 3. The code
+In the respository [https://github.com/Internet-of-Bananas/code](https://github.com/Internet-of-Bananas/code) there are six code files, that increase gradually the complexity:
+- 1_iobColorTest is a test to use the color sensor;
+- 2_iobColorFilter continues the previous sketch and add a color filter using the EWMA library;
+- 3_iobColorRGBhex converts the color number in hexadecimal values;
+- 4_iobDHT11Test tests the temperature and humidity sensor, using the DHT sensor library;
+- 5_iobColorDHT joins the color and temperature sketch;
+- 6_iob that is the final code for the IoB, using the MQTT library to publish the data.
 
+It is presented below how to update the code (the 6_iob) to use it in the Internet of Bananas. The code is available at [https://github.com/Internet-of-Bananas/code](https://github.com/Internet-of-Bananas/code). On the GitHub page, click the `Code> Download ZIP` button. After downloading, unzip the files, then copy the folders to the preferred location on your computer. On the Arduino IDE, select the `File> Open` menu and open the monitorAr.ino file, located in the previously copied folder.
 
+Before sending the code to ESP8266, you need to make three changes:
+
+- Name and password of the WiFi network, so that the device can connect to the internet;
+- Adafruit IO server account login and key;
+- Number the data feeds according to the respective station number.
+
+3.1. WiFi network access data
+To update the name and password of the Wifi network, locate the code below:
+
+/ ************************* WiFi access point ******************* ************** /
+#define WLAN_SSID "WiFi Name" // Name of the WiFi network.
+#define WLAN_PASS "password" // WiFi network password.
+
+Replace the WiFi Name with your network name, and password with your network password, keeping the quotes.
+
+Note: the term WiFi network is called SSID (Service Set Identifier).
