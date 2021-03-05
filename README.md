@@ -60,14 +60,14 @@ Then select the menu command `Skecth> Upload`, or press `Ctrl + U` or `Command+U
 
 To experiment with different intervals, replace the value of `delay (1000);` for example:
 
-``
+```
 void loop () {
   digitalWrite (D4, HIGH); // turn the LED on (HIGH is the voltage level)
   delay (500); // wait for a second
   digitalWrite (D4, LOW); // turn the LED off by making the voltage LOW
   delay (2000); // wait for a second
 }
-``
+```
 
 After the changes in the *delay*, it is necessary to update the Esp8266 by uploading the code to the board, with the command in the menu `Skecth> Upload` or press` Ctrl + U`.
 
