@@ -44,9 +44,32 @@ Follow the instruction and install the driver. If an alert window appears, confi
 
 To check if the installation was well succeded, open the Arduino IDE, select the `Tools> Port` menu and observe the *Com* ports listed. Press `Esc` to exit the selected menu. Disconnect the board's cable from the USB port. Again, select the `Tools> Port` menu, and note which *Com* port is no longer present, the one that dissapeared is the *Com* port of your board.
 
-### 1.2. Add the Esp8266 board 
+### 1.2. Add the NodeMCU Esp8266 board 
+To work with the Esp8266 microcontrollers on the Arduino IDE it is necessary to install a board package. If the Arduino IDE is not open, open it, then select `File > Preferences` menu to open the preferences window. In the field `Additional Boards Manager URLs`, add: `https://arduino.esp8266.com/stable/package_esp8266com_index.json`. Click `OK`to close the window.
+
+Then select the menu `Tools> Boards> Boards Manager`. In the search field, type `esp8266`, and install` ESP8266 by ESP8266 Community`.
+
+After completing the installation, connect the USB cable to the NodeMCU, and the other end of the cable connect to the computer's USB.
+
+In `Tools> Boards` menu, select the board` NodeMCU 1.0 (ESP-12E Module) `from the list. Again in the `Tools> Port` menu, select the *Com* port of your NodeMCU board.
 
 ### 1.3. Verify the installation
+To test whether the installation was successful, open the menu `File> Examples> 01. Basics> Blink`.
+
+Then select the menu command `Skecth> Upload`, or press `Ctrl + U` or `Command+U` in Mac Computer. The Blink skecth will be sent to the microcontroller, and the Esp8266's internal LED will flash in a interval of 1000 milliseconds or 1 second.
+
+To experiment with different intervals, replace the value of `delay (1000);` for example:
+
+``
+void loop () {
+  digitalWrite (D4, HIGH); // turn the LED on (HIGH is the voltage level)
+  delay (500); // wait for a second
+  digitalWrite (D4, LOW); // turn the LED off by making the voltage LOW
+  delay (2000); // wait for a second
+}
+``
+
+After the changes in the *delay*, it is necessary to update the Esp8266 by uploading the code to the board, with the command in the menu `Skecth> Upload` or press` Ctrl + U`.
 
 ## 2. Add libraries to the Arduino IDE
 
