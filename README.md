@@ -80,7 +80,7 @@ Libraries are additional codes that extend the functionality of the Arduino IDE 
 
 To install the libraries on the Arduino IDE, select the menu `Sketch>Include Library>Manage Libraries`. In the search field, type the name of the library EWMA, then click the `Install` button to install the library. Repeat the same procedure to install the Adafruit_MQTT library and DHT sensor library. If there's a warning asking to install additional libraries, confirm yes to install the complementary itens.
 
-## 3. The code
+## 3. Updating the code
 In the respository [https://github.com/Internet-of-Bananas/code](https://github.com/Internet-of-Bananas/code) there are six code files, that increase gradually the complexity:
 - 1_iobColorTest is a test to use the color sensor;
 - 2_iobColorFilter continues the previous sketch and add a color filter using the EWMA library;
@@ -89,7 +89,9 @@ In the respository [https://github.com/Internet-of-Bananas/code](https://github.
 - 5_iobColorDHT joins the color and temperature sketch;
 - 6_iob that is the final code for the IoB, using the MQTT library to publish the data.
 
-It is presented below how to update the code (the 6_iob) to use it in the Internet of Bananas. The code is available at [https://github.com/Internet-of-Bananas/code](https://github.com/Internet-of-Bananas/code). On the GitHub page, click the `Code> Download ZIP` button. After downloading, unzip the files, then copy the folders to the preferred location on your computer. On the Arduino IDE, select the `File> Open` menu and open the monitorAr.ino file, located in the previously copied folder.
+It is presented below how to update the file **6_iob** to use it in the Internet of Bananas. The code is available at [https://github.com/Internet-of-Bananas/code](https://github.com/Internet-of-Bananas/code). On the GitHub page, click the `Code> Download ZIP` button. After downloading, unzip the files, then copy the folders to the preferred location on your computer. On the Arduino IDE, select the `File> Open` menu and open the `6_iob.ino` file, located in the previously copied folder. 
+
+Note: in Arduino IDE the folder and the file must have the same name, so if you renamed the folder, you have to rename the file `.ino` with the same name.
 
 Before sending the code to ESP8266, you need to make three changes:
 
@@ -97,13 +99,27 @@ Before sending the code to ESP8266, you need to make three changes:
 - Adafruit IO server account login and key;
 - Number the data feeds according to the respective station number.
 
-3.1. WiFi network access data
-To update the name and password of the Wifi network, locate the code below:
+### 3.1. The WiFi credentials
+To connect to the internet you need to specift the name and password of your WiFi network. To update the sketch with your name and password, locate the code below:
 
-/ ************************* WiFi access point ******************* ************** /
-#define WLAN_SSID "WiFi Name" // Name of the WiFi network.
-#define WLAN_PASS "password" // WiFi network password.
+``/************************* WiFi Access Point *********************************/
 
-Replace the WiFi Name with your network name, and password with your network password, keeping the quotes.
+#define WLAN_SSID      "wifiName"     //  Name of the WiFi network.
+#define WLAN_PASS      "wifiPassword" //  WiFi password.``
 
-Note: the term WiFi network is called SSID (Service Set Identifier).
+Replace the `wifiName` with your WiFi name, and `wifiPassword` with your WiFi password, keeping the quotes. Write exactly how it is, with space and upper and lower case, if there's any.
+
+### 3.2. Adafruit IO credentials
+To access the Adafruit IO server you need to specify the user name and the key. If you don't have one, you can create it here [// https://accounts.adafruit.com/users/sign_up](https://accounts.adafruit.com/users/sign_up). To update the sketch, locate the code below:
+
+`` /************************* Adafruit.io Setup *********************************/
+// You need an account at the Adafruit IO to publish data.
+// If you don't have it, you can create one at
+// https://accounts.adafruit.com/users/sign_up
+
+#define AIO_SERVER      "io.adafruit.com"       //  Address of the MQTT server from Adafruit IO, don't change.
+#define AIO_SERVERPORT  1883                    //  Number of server port from Adafruit IO.
+#define AIO_USERNAME    "username"  //  Adafruit IO user name.
+#define AIO_KEY         "key"    //  Adafruit IO user key.`` 
+
+Replace `username` with the user name of your account at Adafruit IO, and `key` with your account's key.
