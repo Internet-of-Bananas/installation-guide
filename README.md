@@ -145,7 +145,7 @@ To display your data on the Internet of Bananas map we kindly ask you to set the
 
 To set the feed as public, go to [https://io.adafruit.com](https://io.adafruit.com), select the menu `Feeds` and the `view all` to view all the feeds. Click on the name of the feed **color**, to open the feed's page. On the right side of the screen, select `Privacy` and the change de visibilty to `Public`. Repeat the same proceadure with the other two feeds.
 
-## 4.2 Create a dashboard
+### 4.2 Create a dashboard
 To visualize the data from your IoB you can create a dashboard at your Adafruit IO account. To do so, go to [https://io.adafruit.com](https://io.adafruit.com), select the menu `Dashboards`, and the `view all` to view all the dashboards. Click on the button `+ New Dashboard`, and give it a name and click on `Create`. Then click on the name of the dashboard you just created to open its page. You can choose your own layout of dashboard. As example, we suggest to have a stream of data, a color indicator and charts.
 
 To create a stream of data block, click on the gear icon, in the right top corner of the screen, and choose `Create New Block`, in the options listed, choose `Stream` and select the color, temperature and humidity feeds, and go to the `Next step`. In the following window, give a title to the stream block and click `Create block`. 
