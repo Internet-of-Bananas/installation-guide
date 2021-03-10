@@ -169,4 +169,4 @@ As we previously alerted, do not place NodeMCU and the sensor on a metal or cond
 
 - - - 
 
-If you have any doubts, do not hesitate to contact us at internetofbananas@gmail.com.
+If you have any question, please contact us at internetofbananas@gmail.com.
