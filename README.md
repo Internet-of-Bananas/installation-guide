@@ -17,7 +17,7 @@ We have already developed the code to be used in the IoB project, however each p
 - the microcontroller pins numbers that you are using to plug the sensors;
 - the color calibration parameters.
 
-We will explain how to do the all these updates, and you can also read the comments in the [code](https://github.com/Internet-of-Bananas/code) that may help you to understand them. Just to be clear, you are not asked to share your personal information (user name, key and passwaord), you will do the above updates by yourself, in your computer. 
+We explain how to do the all these updates in the section [3. Updating the code](https://github.com/Internet-of-Bananas/installation-guide#3-updating-the-code), and you can also read the comments in the [code](https://github.com/Internet-of-Bananas/code) that may help you to understand them. Just to be clear, you are not asked to share your personal information (user name, key and passwaord), you will do the above updates by yourself, in your computer. 
 
 After updating the code, your IoB station is ready for the Banana Jam!
 
@@ -137,7 +137,7 @@ As the data is sent, the confirmation `Ok, sent!` is displayed for each feed in 
 
 In addition to these verification modes, you can check the feeds at [Adafruit IO](https://io.adafruit.com/) to see if the data is arriving.
 
-After confirming that the updates have been well succeeded, you are ready to go for the Banana Jam!
+After confirming that the updates have been well succeeded, you can create a dashboard on Adafruit IO.
 
 ## 4. Create a dashboard at Adafruit IO
 To visualize the data from your IoB you can create a dashboard at Adafruit IO platform.
