@@ -21,7 +21,7 @@ We explain how to do the all these updates in the section [3. Updating the code]
 
 After updating the code, your IoB station is ready for the Banana Jam!
 
-**Attention**: The IoB devices contains fragile parts, be careful when handling them. Do not place them in a metal or conductive surface, you can short-circuit the microcontroller and sensors, and damage them.
+**Attention**: The IoB devices contains fragile parts, be careful when handling them. Do not place them in a metal or conductive surface, you can short-circuit the microcontroller and sensors, and damage them. Do not place the microcontrollers and the sensors in a wet environment, water can damage them and may have an injury risk.
 
 ## 1. Installation of Arduino IDE
 To update the code it is necessary to download the *Arduino IDE* - the software that allows writing and sending code to the Arduino microcontroller, NodeMCU Esp8266, among others.
@@ -137,10 +137,36 @@ As the data is sent, the confirmation `Ok, sent!` is displayed for each feed in 
 
 In addition to these verification modes, you can check the feeds at [Adafruit IO](https://io.adafruit.com/) to see if the data is arriving.
 
-After confirming that the updates have been well succeeded, you can create a dashboard on Adafruit IO.
+After confirming that the updates have been well succeeded, you can set the feed as public and create a dashboard on Adafruit IO.
 
-## 4. Create a dashboard at Adafruit IO
-To visualize the data from your IoB you can create a dashboard at Adafruit IO platform.
+## 4. Adafruit IO
+### 4.1. Set the feeds as public
+To display your data on the Internet of Bananas map we kindly ask you to set the privacy of your feeds as public and inform us your username, so we can use the API `https://io.adafruit.com/api/v2/<username>/feeds` to get the color, temperature and humidity data. 
+
+To set the feed as public, go to [https://io.adafruit.com](https://io.adafruit.com), select the menu `Feeds` and the `view all` to view all the feeds. Click on the name of the feed **color**, to open the feed's page. On the right side of the screen, select `Privacy` and the change de visibilty to `Public`. Repeat the same proceadure with the other two feeds.
+
+## 4.2 Create a dashboard
+To visualize the data from your IoB you can create a dashboard at your Adafruit IO account. To do so, go to [https://io.adafruit.com](https://io.adafruit.com), select the menu `Dashboards`, and the `view all` to view all the dashboards. Click on the button `+ New Dashboard`, and give it a name and click on `Create`. Then click on the name of the dashboard you just created to open its page. You can choose your own layout of dashboard. As example, we suggest to have a stream of data, a color indicator and charts.
+
+To create a stream of data block, click on the gear icon, in the right top corner of the screen, and choose `Create New Block`, in the options listed, choose `Stream` and select the color, temperature and humidity feeds, and go to the `Next step`. In the following window, give a title to the stream block and click `Create block`. 
+
+To create a color indicator for the color feed, click again on the gear icon, and choose `Create New Block`, select `Color Picker` and then choose the color feed, and go to `Next step`. Give a title and create the block. 
+
+To create the chart, click on the gear icon, and choose `Create New Block`, select `Line Chart` and then choose the temperature feed, and go to `Next step`. Give a title and create the block. Repeat the same proceadure to create a line chart for the humidity feed.
+
+After you have created the blocks, you can adjust the layout by click on the gear icon and select `Edit Layout`. After you move and resize the blocks, click on `Save Layout`.
+
+If you want to share your dashboard with friends, go again on the gear icon and select `Dashboard Privacy` to unlock it, and still in the *gear* options, click on `Share Links` to copy the URL of you dashboard.
 
 ## 5. Assembling the device on the banana
-The NodeMCU board and the sensors should be attached to the banana...
+The NodeMCU board and the sensors should be attached to the banana using the rubber band or a tape. 
+
+The color sensor should face the banana skin and should be placed close to the banana, with the leds from the sensor touching the banana. To avoid light interferences, we recommend to put a opaque and dark tape around the sensor, creating a "wall", so there's no other source of light reaching the sensor.
+
+Even though the DHT11 sensor measeasures the temperatura and humidity of the air, we suggest to placed it as close as possible to the banana. 
+
+As we previously alerted, do not place NodeMCU and the sensor on a metal or conductive surface, you can damage the microcontroller and sensors. 
+
+- - - 
+
+If you have any doubts, do not hesitate to contact us at internetofbananas@gmail.com.
