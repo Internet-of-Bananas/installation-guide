@@ -5,8 +5,9 @@ The **Internet of Bananas** (IoB) is a critical design project in which people a
 In this guide, we will explain in detail how to build the sensors to attach to the banana and how to visualise and share the data produced online.
 
 ---
+## Introducion and first steps
 
-The IoB is based on the microcontroller NodeMCU Esp8266 with the color sensor TCS3200 and the temperature and humidity sensor DHT11, and thru a WiFi connection sends the data to the internet, in the Adafruit IO platform. The Adafruit IO is server service based on [MQTT protocol](https://en.wikipedia.org/wiki/MQTT), and has an accessible library that can be used with the NodeMCU Esp8266, programing in the Arduino IDE. The Arduino IDE is the software to write and to upload the code to microcontrollers. 
+The sensors of the IoB are composed by a microcontroller NodeMCU Esp8266, a colour sensor TCS3200 and a temperature and humidity sensor DHT11. The sensors will be connected to your local WiFi connection so as to sends the data to the Adafruit IO platform. Adafruit IO is a server service based on the [MQTT protocol](https://en.wikipedia.org/wiki/MQTT). It has an accessible library that can be easily used by our NodeMCU Esp8266, programmed in Arduino IDE (the software to write and to upload the code to microcontrollers). 
 
 To publish the data in Adafruit IO it's necessary to create an account - you can create one in this link: [https://accounts.adafruit.com/users/sign_up](https://accounts.adafruit.com/users/sign_up). Then you will have a user name and key that will be used in the code to publish the data. In the Adafruit IO vocabulary, the data's name is called *feed*, so there will be three feeds, color, temperature and humidity. Only you have control on the data that is published in your account - in the appropriate time, we will kindly ask you to set your feeds as *public*, so we can show them in the global map on our website. =)
 
