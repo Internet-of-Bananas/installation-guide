@@ -5,13 +5,9 @@ The **Internet of Bananas** (IoB) is a critical design project in which people a
 In this guide, we will explain in detail how to build the sensors to attach to the banana and how to visualise and share the data produced online.
 
 ---
-## Introducion and first steps
+## Introducion and 
 
 The sensors of the IoB are composed by a microcontroller NodeMCU Esp8266, a colour sensor TCS3200 and a temperature and humidity sensor DHT11. The sensors will be connected to your local WiFi connection so as to sends the data to the Adafruit IO platform. Adafruit IO is a server service based on the [MQTT protocol](https://en.wikipedia.org/wiki/MQTT). It has an accessible library that can be easily used by our NodeMCU Esp8266, programmed in Arduino IDE (the software to write and to upload the code to microcontrollers). 
-
-To publish the data in Adafruit IO it's necessary to create an account - you can create one in this link: [https://accounts.adafruit.com/users/sign_up](https://accounts.adafruit.com/users/sign_up). Then you will have a user name and key that will be used in the code to publish the data. In the Adafruit IO vocabulary, the data's name is called *feed*, so there will be three feeds, color, temperature and humidity. Only you have control on the data that is published in your account - in the appropriate time, we will kindly ask you to set your feeds as *public*, so we can show them in the global map on our website. =)
-
-![Schematic diagram of the Internet of Bananas](https://drive.google.com/uc?export=view&id=1LpIFhPiTVFzD0ErvvocMIws-D-d8hxrt "Schematic diagram of the IoB")
 
 We have already developed the code to be used in the IoB project, however each participant has to update it with the following information:
 - the name and the password of your Wi-Fi network to connect to the internet;
@@ -19,11 +15,16 @@ We have already developed the code to be used in the IoB project, however each p
 - the microcontroller pins numbers that you are using to plug the sensors;
 - the color calibration parameters.
 
-We explain how to do the all these updates in the section [3. Updating the code](https://github.com/Internet-of-Bananas/installation-guide#3-updating-the-code), and you can also read the comments in the [code](https://github.com/Internet-of-Bananas/code) that may help you to understand them. Just to be clear, you are not asked to share your personal information (user name, key and passwaord), you will do the above updates by yourself, in your computer. 
+We explain how to obtain the Adafruit credentails in the next section [Before Starting](https://github.com/Internet-of-Bananas/installation-guide#Before-starting), and how to do the updates in the section [3. Updating the code](https://github.com/Internet-of-Bananas/installation-guide#3-updating-the-code), and you can also read the comments in the [code](https://github.com/Internet-of-Bananas/code) that may help you to understand them. Just to be clear, you are not asked to share your personal information (user name, key and passwaord), you will do the above updates by yourself, in your computer. 
 
 After updating the code, your IoB station is ready for the Banana Jam!
 
 **Attention**: The IoB devices contains fragile parts, be careful when handling them. Do not place them in a metal or conductive surface, you can short-circuit the microcontroller and sensors, and damage them. Do not place the microcontrollers and the sensors in a wet environment, water can damage them and may have an injury risk.
+
+## Before starting
+To publish the data in Adafruit IO it's necessary to create an account - you can create one in this link: [https://accounts.adafruit.com/users/sign_up](https://accounts.adafruit.com/users/sign_up). Then you will have a user name and key that will be used in the code to publish the data. In the Adafruit IO vocabulary, the data's name is called *feed*, so there will be three feeds, color, temperature and humidity. Only you have control on the data that is published in your account - in the appropriate time, we will kindly ask you to set your feeds as *public*, so we can show them in the global map on our website. =)
+
+![Schematic diagram of the Internet of Bananas](https://drive.google.com/uc?export=view&id=1LpIFhPiTVFzD0ErvvocMIws-D-d8hxrt "Schematic diagram of the IoB")
 
 ## 1. Installation of Arduino IDE
 To update the code it is necessary to download the *Arduino IDE* - the software that allows writing and sending code to the Arduino microcontroller, NodeMCU Esp8266, among others.
