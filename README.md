@@ -7,39 +7,44 @@ In this guide, we will explain in detail how to build the sensors to attach to t
 ---
 ## Introducion and 
 
-The IoB is based on an hardware componend (the IoB sensors) and a software. 
-The hardware is a sensor composed by a microcontroller NodeMCU Esp8266, a colour sensor TCS3200 and a temperature and humidity sensor DHT11. 
-The software is a code written in Arduino IDE (the software to write and to upload the code to microcontrollers). It activates the different sensors, connects to your local WiFi connection, collects data from the sensors and sends them to the Adafruit IO platform. Adafruit IO is a server service based on the [MQTT protocol](https://en.wikipedia.org/wiki/MQTT). It has an accessible library that can be easily used by our NodeMCU Esp8266.
+The IoB is based on a sensors and a software. 
+The IoB sensor composed by a microcontroller NodeMCU Esp8266, a colour sensor TCS3200 and a temperature and humidity sensor DHT11. 
+The IoB software is a code written in Arduino IDE (the software to write and to upload the code to microcontrollers). It activates the different sensors, connects to your local WiFi connection, collects data from the sensors and sends them to the Adafruit IO platform. Adafruit IO is a server service based on the [MQTT protocol](https://en.wikipedia.org/wiki/MQTT). It has an accessible library that can be easily used by our NodeMCU Esp8266.
 
 To build your sensor, you only need the [required components](https://docs.google.com/spreadsheets/d/1UIpVEm1YG7BsRV9cPJuEwh4SHUOPfaC5QKIVQRu9nL4/edit?usp=sharing), and to follow the instructions in this guide.
 
-As for the software, we have already developed the code to be used in the IoB project, however each participant has to update it with the following information:
-- the name and the password of your Wi-Fi network to connect to the internet;
-- the user name and key of your Adafruit IO account, so it can publish the feeds;
-- the microcontroller pins numbers that you are using to plug the sensors;
-- the color calibration parameters.
+As for the software, we have already developed the code to be used in the IoB project. To make it work, each participant has first to update it with the following information:
+- the name and the password of their Wi-Fi network to connect to the internet;
+- the user name and key of their Adafruit IO account, so it can publish the feeds;
+- the microcontroller pins numbers that used to plug the sensors;
+- the colour calibration parameters.
 
-We explain how to obtain the Adafruit credentails in the next section [Before Starting](https://github.com/Internet-of-Bananas/installation-guide#Before-starting), and how to do the updates in the section [3. Updating the code](https://github.com/Internet-of-Bananas/installation-guide#3-updating-the-code), and you can also read the comments in the [code](https://github.com/Internet-of-Bananas/code) that may help you to understand them. Just to be clear, you are not asked to share your personal information (user name, key and passwaord), you will do the above updates by yourself, in your computer. 
+We explain how to obtain the Adafruit credentails in the next section [Before Starting](https://github.com/Internet-of-Bananas/installation-guide#Before-starting), and how to do the updates in the section [3. Updating the code](https://github.com/Internet-of-Bananas/installation-guide#3-updating-the-code). The [code](https://github.com/Internet-of-Bananas/code) is also commented, so to help the users understand how to complete it. 
+NB you are not asked to share any personal information (user name, key and passwaord), you will do the above updates by yourself, in your computer. 
 
 After updating the code, your IoB station is ready for the Banana Jam!
 
-**Attention**: The IoB devices contains fragile parts, be careful when handling them. Do not place them in a metal or conductive surface, you can short-circuit the microcontroller and sensors, and damage them. Do not place the microcontrollers and the sensors in a wet environment, water can damage them and may have an injury risk.
+**Attention**: The IoB devices contains fragile parts, be careful when handling them. Do not place them in a metal or conductive surface, you can short-circuit the microcontroller and sensors, and damage them. Do not place the microcontrollers and the sensors in a wet environment, water can damage them and you may risk injury.
 
 ## Before starting
-To publish the data in Adafruit IO it's necessary to create an account - you can create one in this link: [https://accounts.adafruit.com/users/sign_up](https://accounts.adafruit.com/users/sign_up). Then you will have a user name and key that will be used in the code to publish the data. In the Adafruit IO vocabulary, the data's name is called *feed*, so there will be three feeds, color, temperature and humidity. Only you have control on the data that is published in your account - in the appropriate time, we will kindly ask you to set your feeds as *public*, so we can show them in the global map on our website. =)
+All the data produced from the IoB sensors will be visualised on a platform called Adafruit IO. This will allow each participant to showcase their own data on a "dashboard", and the IoB organisrs to create a World Map of the Internet of Bananas. 
+To publish the data in Adafruit IO it's necessary to have an account - you can create one for free at this link: [https://accounts.adafruit.com/users/sign_up](https://accounts.adafruit.com/users/sign_up). Once you have an account, you will have credentials (user name and key) that will be used in the code to publish the data online. 
+Adafruit IO will recieve three sets of data (or *feeds*): colour, temperature and humidity. Only you have control on the data that is published in your account - in the appropriate time, we will kindly ask you to set your feeds as *public*, so we can show them in the global map on our website. =)
 
 ![Schematic diagram of the Internet of Bananas](https://drive.google.com/uc?export=view&id=1LpIFhPiTVFzD0ErvvocMIws-D-d8hxrt "Schematic diagram of the IoB")
 
 ## 1. Installation of Arduino IDE
-To update the code it is necessary to download the *Arduino IDE* - the software that allows writing and sending code to the Arduino microcontroller, NodeMCU Esp8266, among others.
+In order to update the IoB code and install it in your sensor, it is necessary to download *Arduino IDE*. This simple software will allow you to write or modify code and to upload it to your NodeMCU Esp8266 microcontroller.
 
-Access https://www.arduino.cc/en/Main/Software and download Arduino according to your operating system. When the download is complete, install Arduino. During the installation, confirmations may appear to install the Arduino components, if these warnings appear, confirm the installation.
+Access https://www.arduino.cc/en/Main/Software and download Arduino (choose the version for your operating system!). When the download is complete, install Arduino. During the installation, confirmations may appear asking if you want to install the Arduino components, if these warnings appear, confirm the installation.
 
-Along with the Arduino software, USB drivers are installed, however depending on the operating system, it may be that the USB driver for your NodeMCU Esp8266 has not been installed.
+Along with the Arduino software, the installer should also install the USB drivers necessary for your computer to recognise your NodeMCU board. However, depending on your operating system, it may be that the USB driver for your NodeMCU Esp8266 has not been installed.
 
-To check, connect the USB cable to your NodeMCU board, and the other end of the cable connect to the computer's USB port. Again, depending on the operating system, it may automatically recognize and install the driver, if it's your case, wait until this process finishes. 
+To check, use the USB cable to connect your NodeMCU board to the computer's USB port. After you connected them, wait a few moments: depending on the operating system, it may automatically recognize and install the driver, if this is the case, wait until this process finishes. 
 
-Then open the Arduino IDE, select the `Tools > Port` menu and observe the *Com* ports listed. Press `Esc` to exit the selected menu. Disconnect the board's cable from the USB port. Again, select the `Tools > Port` menu, and note which *Com* port is no longer present, the one that dissapeared is the *Com* port of your board. If it continues with the same *Com* ports listed, or if there's none, the NodeMCU Esp8266 driver has not been installed. In this case, follow the procedure in item *1.1. CH340 driver installation*.
+Reagredless, it is not time to control if your Arduino IDE has installed the USB driver. For this step, the NodeMCU *has* to be connected you your computer. 
+Open the Arduino IDE, select the `Tools > Port` menu and observe which *Com* ports are listed. Keep them in mind, or write them down on a piece of paper.
+Press `Esc` to exit the selected menu. Disconnect the board's cable from the USB port. Again, select the `Tools > Port` menu, and check which *Com* port is no longer present, the one that dissapeared is the *Com* port of your board. If there is no difference between the *Com* ports listed, or if there's none, then the NodeMCU Esp8266 driver has not been installed. In this case, follow the procedure in item *1.1. CH340 driver installation*. Otherwise, go to the [next step](https://github.com/Internet-of-Bananas/installation-guide#1-2-Add-the-NodeMCU-Esp8266-board).
 
 ### 1.1. CH340 driver installation
 If the NodeMCU Esp8266 driver was not installed, you should try to install the CH340 Driver. For that, exit Arduino IDE and download the file according to your operating system:
