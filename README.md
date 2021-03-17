@@ -2,6 +2,7 @@
 ## Installation Guide
 
 The **Internet of Bananas** (IoB) is a critical design project in which people around the World will build simple device to measure the colour of a banana and the temperature and humidity of the air around it for an entire week. During the project, researchers, tinkerers and activists around the Globe will create their own “augmented bananas” and track them during their lifetime, until they are rotten. The data collected by the sensors will then be visualised online on Adafruit IO, where each participant will showcase the information of their individual banana and will be able to access a World map of the entire Internet of Bananas.
+In this guide, we will explain in detail how to build the sensors to attach to the banana and how to visualise and share the data produced online.
 
 ---
 
