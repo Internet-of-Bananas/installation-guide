@@ -7,9 +7,13 @@ In this guide, we will explain in detail how to build the sensors to attach to t
 ---
 ## Introducion and 
 
-The sensors of the IoB are composed by a microcontroller NodeMCU Esp8266, a colour sensor TCS3200 and a temperature and humidity sensor DHT11. The sensors will be connected to your local WiFi connection so as to sends the data to the Adafruit IO platform. Adafruit IO is a server service based on the [MQTT protocol](https://en.wikipedia.org/wiki/MQTT). It has an accessible library that can be easily used by our NodeMCU Esp8266, programmed in Arduino IDE (the software to write and to upload the code to microcontrollers). 
+The IoB is based on an hardware componend (the IoB sensors) and a software. 
+The hardware is a sensor composed by a microcontroller NodeMCU Esp8266, a colour sensor TCS3200 and a temperature and humidity sensor DHT11. 
+The software is a code written in Arduino IDE (the software to write and to upload the code to microcontrollers). It activates the different sensors, connects to your local WiFi connection, collects data from the sensors and sends them to the Adafruit IO platform. Adafruit IO is a server service based on the [MQTT protocol](https://en.wikipedia.org/wiki/MQTT). It has an accessible library that can be easily used by our NodeMCU Esp8266.
 
-We have already developed the code to be used in the IoB project, however each participant has to update it with the following information:
+To build your sensor, you only need the [required components](https://docs.google.com/spreadsheets/d/1UIpVEm1YG7BsRV9cPJuEwh4SHUOPfaC5QKIVQRu9nL4/edit?usp=sharing), and to follow the instructions in this guide.
+
+As for the software, we have already developed the code to be used in the IoB project, however each participant has to update it with the following information:
 - the name and the password of your Wi-Fi network to connect to the internet;
 - the user name and key of your Adafruit IO account, so it can publish the feeds;
 - the microcontroller pins numbers that you are using to plug the sensors;
