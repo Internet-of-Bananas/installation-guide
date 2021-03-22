@@ -128,14 +128,7 @@ The NodeMCU Esp8266 has nine digital pins, usally printed as D0, D1, D2, ..., D8
 **Be careful**: before you connect the jumper cable in the pins, remember to disconnect the NodeMCU board from the USB cable, to avoid connection in the wrong pin with the board powered on. It's good (or at least not bad) practice to always double check the wiring, to confirm you coonect the cable in the correct pins.
 
 ### 5.1. Connecting the TCS3200 sensor
-The color sensor TCS3200 has eight pins, but we use seven of them:
-- S0
-- S1
-- S2
-- S3
-- Out
-- GND
-- VCC
+The color sensor TCS3200 has eight pins, but we use seven of them: S0, S1, S2, S3, Out, GND and VCC.
 
 The VCC must be connected to the 3V3 pin of the NodeMCU, the GND to the GND pin of the NodeMCU. The power rail doesn't need to be specified in the code, but the other pins you have to, in order for the sensor to work properly. On the Arduino IDE, select the `File > Open` menu and open the `1_iobColorTest` file, located in the previously copied folder, as we explained in the section [4. Download the code!](https://github.com/Internet-of-Bananas/installation-guide#4-download-the-code), and find the part shown below, where we specify the pins of the color sensor:
 
