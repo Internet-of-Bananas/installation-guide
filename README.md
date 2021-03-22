@@ -126,7 +126,10 @@ It is presented below how to update the file **6_iob** to use it in the Internet
 ### 3.1. The WiFi credentials
 To connect to the internet you need to specify the name and password of your WiFi network. To update the sketch with your name and password, locate the code below:
 
-``` #define WLAN_SSID      "wifiName"     //  Name of the WiFi network.
+``` 
+/************************* WiFi Access Point *********************************/
+
+#define WLAN_SSID      "wifiName"     //  Name of the WiFi network.
 #define WLAN_PASS      "wifiPassword" //  WiFi password.
 ```
 
@@ -135,7 +138,8 @@ Replace the `wifiName` with your WiFi name, and `wifiPassword` with your WiFi pa
 ### 3.2. Adafruit IO credentials
 To access the Adafruit IO server you need to specify the user name and the key. If you don't have one, you can create it here [// https://accounts.adafruit.com/users/sign_up](https://accounts.adafruit.com/users/sign_up). To update the sketch, locate the code below:
 
-``` /************************* Adafruit.io Setup *********************************/
+``` 
+/************************* Adafruit.io Setup *********************************/
 // You need an account at the Adafruit IO to publish data.
 // If you don't have it, you can create one at
 // https://accounts.adafruit.com/users/sign_up
