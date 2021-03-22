@@ -126,9 +126,7 @@ It is presented below how to update the file **6_iob** to use it in the Internet
 ### 3.1. The WiFi credentials
 To connect to the internet you need to specify the name and password of your WiFi network. To update the sketch with your name and password, locate the code below:
 
-``` / ************************* WiFi Access Point ********************************* /
-
-#define WLAN_SSID      "wifiName"     //  Name of the WiFi network.
+``` #define WLAN_SSID      "wifiName"     //  Name of the WiFi network.
 #define WLAN_PASS      "wifiPassword" //  WiFi password.
 ```
 
