@@ -11,7 +11,7 @@ The IoB is based on a sensors and a software.
 The IoB sensor composed by a microcontroller NodeMCU Esp8266, a color sensor TCS3200 and a temperature and humidity sensor DHT11. 
 The IoB software is a code written in Arduino IDE (the software to write and to upload the code to microcontrollers). It activates the different sensors, connects to your local WiFi connection, collects data from the sensors and sends them to the Adafruit IO platform. Adafruit IO is a server service based on the [MQTT protocol](https://en.wikipedia.org/wiki/MQTT). It has an accessible library that can be easily used by our NodeMCU Esp8266.
 
-To build your sensor, you only need the [required components](https://docs.google.com/spreadsheets/d/1UIpVEm1YG7BsRV9cPJuEwh4SHUOPfaC5QKIVQRu9nL4/edit?usp=sharing), and to follow the instructions in this guide.
+To build your IoB device, you only need the [required components](https://github.com/Internet-of-Bananas/material-list), and to follow the instructions in this guide.
 
 As for the software, we have already developed the code to be used in the IoB project. To make it work, each participant has first to update it with the following information:
 - the name and the password of their Wi-Fi network to connect to the internet;
@@ -20,6 +20,7 @@ As for the software, we have already developed the code to be used in the IoB pr
 - the color calibration parameters.
 
 We explain how to obtain the Adafruit credentails in the next section [Before Starting](https://github.com/Internet-of-Bananas/installation-guide#Before-starting), and how to do the updates in the section [3. Updating the code](https://github.com/Internet-of-Bananas/installation-guide#3-updating-the-code). The [code](https://github.com/Internet-of-Bananas/code) is also commented, so to help the users understand how to complete it. 
+
 NB you are not asked to share any personal information (user name, key and passwaord), you will do the above updates by yourself, in your computer. 
 
 After updating the code, your IoB station is ready for the Banana Jam!
@@ -27,7 +28,7 @@ After updating the code, your IoB station is ready for the Banana Jam!
 **Attention**: The IoB devices contains fragile parts, be careful when handling them. Do not place them in a metal or conductive surface, you can short-circuit the microcontroller and sensors, and damage them. Do not place the microcontrollers and the sensors in a wet environment, water can damage them and you may risk injury.
 
 ## Before starting
-All the data produced from the IoB sensors will be visualised on a platform called Adafruit IO. This will allow each participant to showcase their own data on a "dashboard", and the IoB organisrs to create a World Map of the Internet of Bananas. 
+All the data produced from the IoB sensors will be visualised on a platform called Adafruit IO. This will allow each participant to showcase their own data on a "dashboard", and the IoB organisers to create a World Map of the Internet of Bananas. 
 To publish the data in Adafruit IO it's necessary to have an account - you can create one for free at this link: [https://accounts.adafruit.com/users/sign_up](https://accounts.adafruit.com/users/sign_up). Once you have an account, you will have credentials (user name and key) that will be used in the code to publish the data online. 
 Adafruit IO will recieve three sets of data (or *feeds*): color, temperature and humidity. Only you have control on the data that is published in your account - in the appropriate time, we will kindly ask you to set your feeds as *public*, so we can show them in the global map on our website. =)
 
@@ -42,7 +43,7 @@ Along with the Arduino software, the installer should also install the USB drive
 
 To check, use the USB cable to connect your NodeMCU board to the computer's USB port. After you connected them, wait a few moments: depending on the operating system, it may automatically recognize and install the driver, if this is the case, wait until this process finishes. 
 
-Reagredless, it is not time to control if your Arduino IDE has installed the USB driver. For this step, the NodeMCU *has* to be connected you your computer. 
+Regardless, it is now time to control if your Arduino IDE has installed the USB driver. For this step, the NodeMCU *has* to be connected you your computer. 
 Open the Arduino IDE, select the `Tools > Port` menu and observe which *Com* ports are listed. Keep them in mind, or write them down on a piece of paper.
 Press `Esc` to exit the selected menu. Disconnect the board's cable from the USB port. Again, select the `Tools > Port` menu, and check which *Com* port is no longer present, the one that dissapeared is the *Com* port of your board. If there is no difference between the *Com* ports listed, or if there's none, then the NodeMCU Esp8266 driver has not been installed. In this case, follow the procedure in item *1.1. CH340 driver installation*. Otherwise, go to 1.2.
 
@@ -75,9 +76,9 @@ You can experiment with different intervals by replace the numerical value of `d
 ```// the loop function runs over and over again forever
 void loop() {
   digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(1000);                       // wait for a second
+  delay(500);                       // wait for a second
   digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
-  delay(1000);                       // wait for a second
+  delay(2000);                       // wait for a second
 }
 ```
 
@@ -123,9 +124,9 @@ It is presented below how to update the file **6_iob** to use it in the Internet
 - Number the data feeds according to the respective station number.
 
 ### 3.1. The WiFi credentials
-To connect to the internet you need to specift the name and password of your WiFi network. To update the sketch with your name and password, locate the code below:
+To connect to the internet you need to specify the name and password of your WiFi network. To update the sketch with your name and password, locate the code below:
 
-```/************************* WiFi Access Point *********************************/
+```/ ************************* WiFi Access Point ********************************* /
 
 #define WLAN_SSID      "wifiName"     //  Name of the WiFi network.
 #define WLAN_PASS      "wifiPassword" //  WiFi password.
@@ -136,7 +137,7 @@ Replace the `wifiName` with your WiFi name, and `wifiPassword` with your WiFi pa
 ### 3.2. Adafruit IO credentials
 To access the Adafruit IO server you need to specify the user name and the key. If you don't have one, you can create it here [// https://accounts.adafruit.com/users/sign_up](https://accounts.adafruit.com/users/sign_up). To update the sketch, locate the code below:
 
-```/************************* Adafruit.io Setup *********************************/
+```/ ************************* Adafruit.io Setup ********************************* /
 // You need an account at the Adafruit IO to publish data.
 // If you don't have it, you can create one at
 // https://accounts.adafruit.com/users/sign_up
