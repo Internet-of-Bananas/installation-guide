@@ -86,7 +86,7 @@ After you change the duration of the *delay*, update the Esp8266 by uploading th
 
 Well done! You have now succesfully connecnted your NodeMCU to your computer!
 
-## 3.4. Add libraries to the Arduino IDE
+### 3.4. Add libraries to the Arduino IDE
 In otder for the IoB software to work, you will need to download some additional libraries. Libraries are additional codes that extend the functionality of the Arduino IDE for use with modules, sensors, among others, developed and shared by collaborators. In the Internet of Bananas you will need to install the following libraries:
 
 - [EWMA](https://github.com/jonnieZG/EWMA), Exponentially Weighted Moving Average, by Arsen Torbarina, to filter noise of the color sensor;
@@ -97,34 +97,62 @@ To install the libraries on the Arduino IDE, select the menu `Sketch > Include L
 
 Well done! Now you have all the required libraries for the IoB to work! 
 
-## 4. Connecting the hardware pins
+
+## 4. Download the code!
+The code for the IoB project is available in the respository [https://github.com/Internet-of-Bananas/code](https://github.com/Internet-of-Bananas/code). There are six code files, of increasing complexity. For your information, here what each of the codes does:
+
+- 1_iobColorTest is a test to use the color sensor;
+- 2_iobColorFilter continues the previous sketch and add a color filter using the EWMA library;
+- 3_iobColorRGBhex converts the color number in hexadecimal values;
+- 4_iobDHT11Test tests the temperature and humidity sensor, using the DHT sensor library;
+- 5_iobColorDHT joins the color and temperature sketch;
+- 6_iob that is the final code for the IoB, using the MQTT library to publish the data online.
+
+Feel free to download and experiment with any of these codes. For the IoB to work you need the `6_iob`. 
+
+To download the code, on the [GitHub page](https://github.com/Internet-of-Bananas/code), click the `Code > Download ZIP` button. After downloading, unzip the files, then copy the folders to the preferred location on your computer. 
+
+Note: in Arduino IDE the folder and the file must have the same name, so if you rename the folder, you will have to rename the file `.ino` with the same name.
+
+## 5. Connecting the hardware pins
 The sensors are connected to your NodeMCU using the female-female jumper cables to plug in the respective pins. The NodeMCU board has many pins, but we will focus on those that can be used in the IoB project, that are the power rail and the digital pins. 
 
 The power rail is the power supply, the voltage, composed of two pins, the positive and the ground. Normally they are printed on the board as `3V3` for the tension of 3.3 volts, and `GND` or `G` for *ground*. In both sensors it's necessary to connect the power in the correpondents pins. In some cases the positive pin may be writen on the board as `+` or `VCC`, and the ground as `-`, `G` or `GND`.
 
 The NodeMCU Esp8266 has nine digital pins, usally printed as D0, D1, D2, ..., D8. However, there is another way to number the pins, using the General Purpose Input/Output or GPIO. For instance, the D0 correspond to GPIO16, the D1 to GP05 (yes, it's very strange). What is important to know is: we can use both ways. If you want to specify in the code the pin D0, you can write `D0` or `16`, or the pin D1, you can write `D1` or `5`.  If you want to see the GPIO pinout of the NodeMCU board,you can have a look [here](https://www.monster.com.tw/wp-content/uploads/2018/03/PINOUT-NodeMCU_1.0-V2-y-V3-1.png). 
 
-## 4.1. Connecting the color sensor
-The color sensor TCS3200 has eight pins, but we use seven of them, as follow:
+### 5.1. Connecting the TCS3200 sensor
+The color sensor TCS3200 has eight pins, but we use seven of them:
 - S0
 - S1
 - S2
 - S3
 - Out
-- Gnd
-- Vcc
-- 
+- GND
+- VCC
+
+The VCC must be connected to the 3V3 pin of the NodeMCU, the GND to the GND pin of the NodeMCU. The power rail doesn't need to be specified in the code, but the other pins you have to, in order for the sensor to work properly. On the Arduino IDE, select the `File > Open` menu and open the `1_iobColorTest` file, located in the previously copied folder. In the IoB code you can find the part shown below, where we specify the pins of the color sensor:
+
+```
+// *** Setup parameters for the Color Sensor TCS3200 ***
+// Create the variable to define the pins
 const int s0 = D6;    // Set the pin S0 on the NodeMCU.
 const int s1 = D7;    // Set the pin S1 on the NodeMCU.
 const int s2 = D3;    // Set the pin S2 on the NodeMCU.
 const int s3 = D4;    // Set the pin S3 on the NodeMCU.
 const int out = D5;   // Set the pin Output on the NodeMCU.
+```
 
+You can connect the pins of the sensor to NodeMCU following what is already set in the code, or you can change it but then you have to update the code with the correspondents pins that you connected. Remember that the **D** is upper case, or if you choose to write the GPIO number you only write the number, without the letters *GPIO*.
+
+To check if the sensor was succesfuly connected to the NodeMCU, on the Arduino IDE, select the `File > Open` menu and open the `1_iobColorTest` file, located in the previously copied folder. 
+
+### 5.2. Connectiong the DHT11 sensor
+The temperature and humidity sensor has thre pins, the VCC, GND and the signal, which can be represented on the board as `out`. As we mention before, the power rail doesn't need to be specified in the code, only the signal pin. 
 
 
 ## 5. Updating the code
-It is now time to acquire the IoB software and to update it with the required informtion.
-You will find the code in the respository [https://github.com/Internet-of-Bananas/code](https://github.com/Internet-of-Bananas/code). 
+It is now time to acquire the IoB software and to update it with the required informtion. You will find the code in the respository [https://github.com/Internet-of-Bananas/code](https://github.com/Internet-of-Bananas/code). 
 
 In the repository you will find six code files, of increasing complexity. For the IoB to work, you need only the last one (6_iob). 
 For your information, here what each of the codes does:
