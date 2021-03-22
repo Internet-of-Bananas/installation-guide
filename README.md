@@ -116,6 +116,8 @@ To download the code, on the [GitHub page](https://github.com/Internet-of-Banana
 
 Note: in Arduino IDE the folder and the file must have the same name, so if you rename the folder, you will have to rename the file `.ino` with the same name.
 
+You need to update all these files, as it is explained in the next section.
+
 ## 5. Connecting the hardware pins
 The sensors are connected to your NodeMCU using the female-female jumper cables to plug in the respective pins. The NodeMCU board has many pins, but we will focus on those that can be used in the IoB project, that are the power rail and the digital pins. 
 
@@ -154,14 +156,32 @@ Disconnect your board fom the USB cable and plug the jumper cables in the respec
 To test if the TCS3200 sensor was succesfuly connected to the NodeMCU, upload the code to your board, select the menu `Skecth > Upload`, or press `Ctrl + U` or `Command + U`. When the upload is concluded, select `Tools > Serial monitor`. In the window that opens, in the lower right corner, select speed `9600`. Point the color sensor close to a surface and check if the numbers change. 
 
 #### 5.1.1. Color calibration
-It is necessary to do a color calibration of your TCS3200 sensor, because they vary from sensor to sensor so we can't use standard values. To calibrate, you will need a black and white paper. Then, you point the sensor to the black paper and write downd the numbers for the red, green and blue reading. Next, you repeat the same proceadure with white papaer. These numbers means the minimum and maximum reading of intensity of red, green and blue. 
+It is necessary to do a color calibration of your TCS3200 sensor, because they vary from sensor to sensor so we can't use standard values. To calibrate, you will need a black and white paper. Then, you point the sensor to the black paper and write downd the numbers for the red, green and blue reading. Next, you repeat the same proceadure with white papaer. These numbers mean the minimum and maximum reading of intensity of red, green and blue. 
 
 To do the calibration, open the file `2_iobColorFilter`, if it is the case, update the pin definition as explained in the section [5.1. Connecting the TCS3200 sensor
 ](https://github.com/Internet-of-Bananas/installation-guide#51-connecting-the-tcs3200-sensor). Open the serial monitor, `Tools > Serial monitor`. In the window that opens, in the lower right corner, check if the speed is set to `9600`, otherwise do it. 
 
 Place the sensor near a white paper and take note of the lowest values, from red, green and blue. Repeat the proceadure with a black paper, and take note of the highest values, from red, green and blue. These numbers will be necessary in the IoB code, for a more accurate color measurement.
 
-For a better understanding how the color sensor works, we suggest you to run the code 1_iobColorTest, 2_iobColorFilter, and 3_iobColorRGBhex and read its comments (the text after the `//` or inside `/*    */`).
+In the files `3_iobColorRGBhex`, `5_iobColorDHT`, and `6_iob` you will find the part shown below:
+```
+// *** Color calibration***
+// Update the variables below with your reading.
+// Use the sensor in white and black paper to take note of the minimum and maximum values for red, green and blue.
+
+int redMin = 54;       // Update this value with your reading of the white paper.
+int redMax = 552;      // Update this value with your reading of the black paper.
+
+int greenMin = 55;     // Update this value with your reading of the white paper.
+int greenMax = 579;    // Update this value with your reading of the black paper.
+
+int blueMin = 40;      // Update this value with your reading of the white paper.
+int blueMax = 448;     // Update this value with your reading of the black paper.
+```
+
+And then you can substitute these values with the numbers that you wrote.
+
+For a better understanding how the color sensor works, we suggest you to read the codes' comments (the text after the `//` or inside `/*    */`).
 
 ### 5.2. Connectiong the DHT11 sensor
 The temperature and humidity sensor has three pins, the VCC, GND and the signal, which can be represented on the board as `out`. As we mention before, the power rail doesn't need to be specified in the code, only the signal pin. On the Arduino IDE, select the `File > Open` menu and open the `4_iobDHT11Test` file, located in the previously copied folder, and find the part shown below, where we specify the pins of the color sensor:
@@ -186,7 +206,7 @@ On the Arduino IDE, select the `File > Open` menu and open the `6_iob.ino` file,
 Before sending the code to ESP8266, you need to make some changes:
 
 - specify the pins of the sensors, as explained in [5. Connecting the hardware pins](https://github.com/Internet-of-Bananas/installation-guide#5-connecting-the-hardware-pins);
-- the color calibration parameters; 
+- the color calibration parameters, see [5.1.1. Color calibration](https://github.com/Internet-of-Bananas/installation-guide#511-color-calibration); 
 - name and password of the WiFi network, so that the device can connect to the internet;
 - Adafruit IO server account login and key;
 
