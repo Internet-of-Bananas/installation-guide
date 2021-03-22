@@ -14,12 +14,14 @@ The IoB software is a code written in Arduino IDE (the software to write and to 
 To build your IoB device, you only need the [required components](https://github.com/Internet-of-Bananas/material-list), and to follow the instructions in this guide.
 
 As for the software, we have already developed the code to be used in the IoB project. To make it work, each participant has first to update it with the following information:
-- the microcontroller pins numbers that used to plug the sensors;
+- the microcontroller pins connected to the sensors;
 - the color calibration parameters;
 - the name and the password of their Wi-Fi network to connect to the internet;
 - the user name and key of their Adafruit IO account, so it can publish the feeds.
 
-We explain how to obtain the Adafruit credentails in the next section [2. Before Starting](https://github.com/Internet-of-Bananas/installation-guide#Before-starting), and how to do the updates in the section [3. Updating the code](https://github.com/Internet-of-Bananas/installation-guide#3-updating-the-code). The [code](https://github.com/Internet-of-Bananas/code) is also commented, so to help the users understand how to complete it. 
+We explain how to obtain the Adafruit credentails in the next section [2. Before Starting](https://github.com/Internet-of-Bananas/installation-guide#Before-starting), how to update the hardware pins in the section [5. Connecting the hardware pins](https://github.com/Internet-of-Bananas/installation-guide#5-connecting-the-hardware-pins), how to set the color parameters in the section [5.1.1. Color calibration](https://github.com/Internet-of-Bananas/installation-guide#511-color-calibration) and the WiFi and Adafruit IO credentials in the section [6. The IoB code](https://github.com/Internet-of-Bananas/installation-guide#6-the-iob-code).
+
+The [code](https://github.com/Internet-of-Bananas/code) is also commented (the text after the `//` or inside `/*   */`), so to help the users understand how to complete it.  
 
 NB you are not asked to share any personal information (user name, key and passwaord), you will do the above updates by yourself, in your computer. 
 
@@ -174,8 +176,6 @@ int blueMax = 448;     // Update this value with your reading of the black paper
 
 And then you can substitute these values with the numbers that you wrote.
 
-For a better understanding how the color sensor works, we suggest you to read the codes' comments (the text after the `//` or inside `/*    */`).
-
 ### 5.2. Connectiong the DHT11 sensor
 The temperature and humidity sensor has three pins, the VCC, GND and the signal, which can be represented on the board as `out`. As we mention before, the power rail doesn't need to be specified in the code, only the signal pin. On the Arduino IDE, select the `File > Open` menu and open the `4_iobDHT11Test` file, located in the previously copied folder, and find the part shown below, where we specify the pins of the color sensor:
 
@@ -198,7 +198,7 @@ On the Arduino IDE, select the `File > Open` menu and open the `6_iob.ino` file,
 
 Before sending the code to ESP8266, you need to make some changes:
 
-- specify the pins of the sensors, as explained in [5. Connecting the hardware pins](https://github.com/Internet-of-Bananas/installation-guide#5-connecting-the-hardware-pins);
+- the microcontroller pins connected to the sensors, as explained in [5. Connecting the hardware pins](https://github.com/Internet-of-Bananas/installation-guide#5-connecting-the-hardware-pins);
 - the color calibration parameters, see [5.1.1. Color calibration](https://github.com/Internet-of-Bananas/installation-guide#511-color-calibration); 
 - name and password of the WiFi network, so that the device can connect to the internet;
 - Adafruit IO server account login and key;
@@ -216,7 +216,7 @@ To connect to the internet you need to specify the name and password of your WiF
 Replace the `wifiName` with your WiFi name, and `wifiPassword` with your WiFi password, keeping the quotes. Write exactly how it is, with space and upper and lower case, if there are any.
 
 ### 6.2. Adafruit IO credentials
-To access the Adafruit IO server you need to specify the user name and the key. If you don't have one, you can create it here [// https://accounts.adafruit.com/users/sign_up](https://accounts.adafruit.com/users/sign_up). To update the sketch, locate the code below:
+To access the Adafruit IO server you need to specify the user name and the key. If you don't have one, you can create it here [https://accounts.adafruit.com/users/sign_up](https://accounts.adafruit.com/users/sign_up). To update the sketch, locate the code below:
 
 ``` 
 /************************* Adafruit.io Setup *********************************/
