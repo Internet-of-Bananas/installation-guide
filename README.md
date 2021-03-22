@@ -28,7 +28,9 @@ NB you are not asked to share any personal information (user name, key and passw
 ## 2. Before starting
 All the data produced from the IoB sensors will be visualised on a platform called Adafruit IO. This will allow each participant to showcase their own data on a "dashboard", and the IoB organisers to create a World Map of the Internet of Bananas. 
 
-To publish the data in Adafruit IO it's necessary to have an account - you can create one for free at this link: [https://accounts.adafruit.com/users/sign_up](https://accounts.adafruit.com/users/sign_up). Once you have an account, on the Adafruit IO website, click on the menu `My Key` to see your credentials (user name and key), that will be used in the code to publish the data online. Adafruit IO will recieve from your IoB station three sets of data (or *feeds*): color, temperature and humidity. Only you have control on the data that is published in your account - in the appropriate time, we will kindly ask you to set your feeds as *public*, so you can share them with your friends and we can show them in the global map on our website. =)
+To publish the data in Adafruit IO it's necessary to have an account - you can create one for free at this link: [https://accounts.adafruit.com/users/sign_up](https://accounts.adafruit.com/users/sign_up). Once you have an account, on the Adafruit IO website, click on the menu `My Key` to see your credentials (user name and key), that will be used in the code to publish the data online. 
+
+Adafruit IO will recieve from your IoB station three sets of data (or *feeds*): color, temperature and humidity. Only you have control on the data that is published in your account - in the appropriate time, we will kindly ask you to set your feeds as *public*, so you can share them with your friends and we can show them in the global map on our website. =)
 
 ![Schematic diagram of the Internet of Bananas](https://drive.google.com/uc?export=view&id=1LpIFhPiTVFzD0ErvvocMIws-D-d8hxrt "Schematic diagram of the IoB")
 
@@ -84,7 +86,7 @@ After you change the duration of the *delay*, update the Esp8266 by uploading th
 
 Well done! You have now succesfully connecnted your NodeMCU to your computer!
 
-## 4. Add libraries to the Arduino IDE
+## 3.4. Add libraries to the Arduino IDE
 In otder for the IoB software to work, you will need to download some additional libraries. Libraries are additional codes that extend the functionality of the Arduino IDE for use with modules, sensors, among others, developed and shared by collaborators. In the Internet of Bananas you will need to install the following libraries:
 
 - [EWMA](https://github.com/jonnieZG/EWMA), Exponentially Weighted Moving Average, by Arsen Torbarina, to filter noise of the color sensor;
@@ -95,7 +97,28 @@ To install the libraries on the Arduino IDE, select the menu `Sketch > Include L
 
 Well done! Now you have all the required libraries for the IoB to work! 
 
-## 5. Connecting the hardware pins
+## 4. Connecting the hardware pins
+The sensors are connected to your NodeMCU using the female-female jumper cables to plug in the respective pins. The NodeMCU board has many pins, but we will focus on those that can be used in the IoB project, that are the power rail and the digital pins. 
+
+The power rail is the power supply, the voltage, composed of two pins, the positive and the ground. Normally they are printed on the board as `3V3` for the tension of 3.3 volts, and `GND` or `G` for *ground*. In both sensors it's necessary to connect the power in the correpondents pins. In some cases the positive pin may be writen on the board as `+` or `VCC`, and the ground as `-`, `G` or `GND`.
+
+The NodeMCU Esp8266 has nine digital pins, usally printed as D0, D1, D2, ..., D8. However, there is another way to number the pins, using the General Purpose Input/Output or GPIO. For instance, the D0 correspond to GPIO16, the D1 to GP05 (yes, it's very strange). What is important to know is: we can use both ways. If you want to specify in the code the pin D0, you can write `D0` or `16`, or the pin D1, you can write `D1` or `5`.  If you want to see the GPIO pinout of the NodeMCU board,you can have a look [here](https://www.monster.com.tw/wp-content/uploads/2018/03/PINOUT-NodeMCU_1.0-V2-y-V3-1.png). 
+
+## 4.1. Connecting the color sensor
+The color sensor TCS3200 has eight pins, but we use seven of them, as follow:
+- S0
+- S1
+- S2
+- S3
+- Out
+- Gnd
+- Vcc
+- 
+const int s0 = D6;    // Set the pin S0 on the NodeMCU.
+const int s1 = D7;    // Set the pin S1 on the NodeMCU.
+const int s2 = D3;    // Set the pin S2 on the NodeMCU.
+const int s3 = D4;    // Set the pin S3 on the NodeMCU.
+const int out = D5;   // Set the pin Output on the NodeMCU.
 
 
 
