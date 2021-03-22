@@ -14,10 +14,10 @@ The IoB software is a code written in Arduino IDE (the software to write and to 
 To build your IoB device, you only need the [required components](https://github.com/Internet-of-Bananas/material-list), and to follow the instructions in this guide.
 
 As for the software, we have already developed the code to be used in the IoB project. To make it work, each participant has first to update it with the following information:
-- the name and the password of their Wi-Fi network to connect to the internet;
-- the user name and key of their Adafruit IO account, so it can publish the feeds;
 - the microcontroller pins numbers that used to plug the sensors;
-- the color calibration parameters.
+- the color calibration parameters;
+- the name and the password of their Wi-Fi network to connect to the internet;
+- the user name and key of their Adafruit IO account, so it can publish the feeds.
 
 We explain how to obtain the Adafruit credentails in the next section [2. Before Starting](https://github.com/Internet-of-Bananas/installation-guide#Before-starting), and how to do the updates in the section [3. Updating the code](https://github.com/Internet-of-Bananas/installation-guide#3-updating-the-code). The [code](https://github.com/Internet-of-Bananas/code) is also commented, so to help the users understand how to complete it. 
 
@@ -33,6 +33,8 @@ To publish the data in Adafruit IO it's necessary to have an account - you can c
 Adafruit IO will recieve from your IoB station three sets of data (or *feeds*): color, temperature and humidity. Only you have control on the data that is published in your account - in the appropriate time, we will kindly ask you to set your feeds as *public*, so you can share them with your friends and we can show them in the global map on our website. =)
 
 ![Schematic diagram of the Internet of Bananas](https://drive.google.com/uc?export=view&id=1LpIFhPiTVFzD0ErvvocMIws-D-d8hxrt "Schematic diagram of the IoB")
+
+NB when we mention *NodeMCU*, *ESP8266*, *board*, *microcontroller* for the sake of comprehension, it's the same thing.
 
 ## 3. Installation of Arduino IDE
 In order to update the IoB code and install it in your sensor, it is necessary to download *Arduino IDE*. This simple software will allow you to write or modify code and to upload it to your NodeMCU Esp8266 microcontroller.
@@ -121,6 +123,8 @@ The power rail is the power supply, the voltage, composed of two pins, the posit
 
 The NodeMCU Esp8266 has nine digital pins, usally printed as D0, D1, D2, ..., D8. However, there is another way to number the pins, using the General Purpose Input/Output or GPIO. For instance, the D0 correspond to GPIO16, the D1 to GP05 (yes, it's very strange). What is important to know is: we can use both ways. If you want to specify in the code the pin D0, you can write `D0` or `16`, or the pin D1, you can write `D1` or `5`.  If you want to see the GPIO pinout of the NodeMCU board,you can have a look [here](https://www.monster.com.tw/wp-content/uploads/2018/03/PINOUT-NodeMCU_1.0-V2-y-V3-1.png). 
 
+**Be careful**: before you connect the jumper cable in the pins, remember to disconnect the NodeMCU board from the USB cable, to avoid connection in the wrong pin with the board powered on. It's good (or at least not bad) practice to always double check the wiring, to confirm you coonect the cable in the correct pins.
+
 ### 5.1. Connecting the TCS3200 sensor
 The color sensor TCS3200 has eight pins, but we use seven of them:
 - S0
@@ -131,7 +135,7 @@ The color sensor TCS3200 has eight pins, but we use seven of them:
 - GND
 - VCC
 
-The VCC must be connected to the 3V3 pin of the NodeMCU, the GND to the GND pin of the NodeMCU. The power rail doesn't need to be specified in the code, but the other pins you have to, in order for the sensor to work properly. On the Arduino IDE, select the `File > Open` menu and open the `1_iobColorTest` file, located in the previously copied folder. In the IoB code you can find the part shown below, where we specify the pins of the color sensor:
+The VCC must be connected to the 3V3 pin of the NodeMCU, the GND to the GND pin of the NodeMCU. The power rail doesn't need to be specified in the code, but the other pins you have to, in order for the sensor to work properly. On the Arduino IDE, select the `File > Open` menu and open the `1_iobColorTest` file, located in the previously copied folder, as we explained in the section [4. Download the code!](https://github.com/Internet-of-Bananas/installation-guide#4-download-the-code), and find the part shown below, where we specify the pins of the color sensor:
 
 ```
 // *** Setup parameters for the Color Sensor TCS3200 ***
@@ -143,39 +147,50 @@ const int s3 = D4;    // Set the pin S3 on the NodeMCU.
 const int out = D5;   // Set the pin Output on the NodeMCU.
 ```
 
-You can connect the pins of the sensor to NodeMCU following what is already set in the code, or you can change it but then you have to update the code with the correspondents pins that you connected. Remember that the **D** is upper case, or if you choose to write the GPIO number you only write the number, without the letters *GPIO*.
+You can connect the pins of the sensor to NodeMCU following what is already set in the code, or you can change it, but then you have to update the code with the correspondents pins that you connected. Remember that the **D** is upper case, or if you choose to write the GPIO number you only write the number, without the letters *GPIO*. 
 
-To check if the sensor was succesfuly connected to the NodeMCU, on the Arduino IDE, select the `File > Open` menu and open the `1_iobColorTest` file, located in the previously copied folder. 
+Disconnect your board fom the USB cable and plug the jumper cables in the respective pins. Double check the connection, after you finish, plug the board back in the USB.
+
+To test if the TCS3200 sensor was succesfuly connected to the NodeMCU, upload the code to your board, select the menu `Skecth > Upload`, or press `Ctrl + U` or `Command + U`. When the upload is concluded, select `Tools > Serial monitor`. In the window that opens, in the lower right corner, select speed `9600`. Point the color sensor close to a surface and check if the numbers change. 
+
+#### 5.1.1. Color calibration
+It is necessary to do a color calibration of your TCS3200 sensor, because they vary from sensor to sensor so we can't use standard values. To calibrate, you will need a black and white paper. Then, you point the sensor to the black paper and write downd the numbers for the red, green and blue reading. Next, you repeat the same proceadure with white papaer. These numbers means the minimum and maximum reading of intensity of red, green and blue. 
+
+To do the calibration, open the file `2_iobColorFilter`, if it is the case, update the pin definition as explained in the section [5.1. Connecting the TCS3200 sensor
+](https://github.com/Internet-of-Bananas/installation-guide#51-connecting-the-tcs3200-sensor). Open the serial monitor, `Tools > Serial monitor`. In the window that opens, in the lower right corner, check if the speed is set to `9600`, otherwise do it. 
+
+Place the sensor near a white paper and take note of the lowest values, from red, green and blue. Repeat the proceadure with a black paper, and take note of the highest values, from red, green and blue. These numbers will be necessary in the IoB code, for a more accurate color measurement.
+
+For a better understanding how the color sensor works, we suggest you to run the code 1_iobColorTest, 2_iobColorFilter, and 3_iobColorRGBhex and read its comments (the text after the `//` or inside `/*    */`).
 
 ### 5.2. Connectiong the DHT11 sensor
-The temperature and humidity sensor has thre pins, the VCC, GND and the signal, which can be represented on the board as `out`. As we mention before, the power rail doesn't need to be specified in the code, only the signal pin. 
+The temperature and humidity sensor has three pins, the VCC, GND and the signal, which can be represented on the board as `out`. As we mention before, the power rail doesn't need to be specified in the code, only the signal pin. On the Arduino IDE, select the `File > Open` menu and open the `4_iobDHT11Test` file, located in the previously copied folder, and find the part shown below, where we specify the pins of the color sensor:
 
+```
+// *** Setup parameters for the Sensor DHT11 ***
+#include "DHT.h"          // Add the library DHT.
+#define DHTPIN D1         // Set the pin connected to the DHT sensor.
+```
 
-## 5. Updating the code
-It is now time to acquire the IoB software and to update it with the required informtion. You will find the code in the respository [https://github.com/Internet-of-Bananas/code](https://github.com/Internet-of-Bananas/code). 
+You can connect the signal pin of the sensor to NodeMCU following what is already set in the code, or you can change it, but then you have to update the code with the correspondent pin that you connected. Remember that the **D** is upper case, or if you choose to write the GPIO number you only write the number, without the letters *GPIO*. 
 
-In the repository you will find six code files, of increasing complexity. For the IoB to work, you need only the last one (6_iob). 
-For your information, here what each of the codes does:
+Disconnect your board fom the USB cable and plug the jumper cables in the respective pins. Double check the connection, after you finish, plug the board back in the USB.
 
-- 1_iobColorTest is a test to use the color sensor;
-- 2_iobColorFilter continues the previous sketch and add a color filter using the EWMA library;
-- 3_iobColorRGBhex converts the color number in hexadecimal values;
-- 4_iobDHT11Test tests the temperature and humidity sensor, using the DHT sensor library;
-- 5_iobColorDHT joins the color and temperature sketch;
-- 6_iob that is the final code for the IoB, using the MQTT library to publish the data.
+To test if the DHT11 sensor was succesfuly connected to the NodeMCU, upload the code to your board, select the menu `Skecth > Upload`, or press `Ctrl + U` or `Command + U`. When the upload is concluded, select `Tools > Serial monitor`. In the window that opens, in the lower right corner, check if the speed is set to `9600`, otherwise do it.  Place the sensor inside your hands and check if the temperature increases.
 
-Feel free to download and experiment with any of these codes. In this guide, however, we will only focus on how to use 6_iob. 
+## 6. The IoB code
+It is now time to acquire the IoB software and to update it with the required informtion. To download the code, follow the instructions of the seciton [4. Download the code!](https://github.com/Internet-of-Bananas/installation-guide#4-download-the-code)
 
-The code is available at [https://github.com/Internet-of-Bananas/code](https://github.com/Internet-of-Bananas/code). On the GitHub page, click the `Code > Download ZIP` button. After downloading, unzip the files, then copy the folders to the preferred location on your computer. On the Arduino IDE, select the `File > Open` menu and open the `6_iob.ino` file, located in the previously copied folder. 
+On the Arduino IDE, select the `File > Open` menu and open the `6_iob.ino` file, located in the previously copied folder. 
 
-Note: in Arduino IDE the folder and the file must have the same name, so if you rename the folder, you will have to rename the file `.ino` with the same name.
+Before sending the code to ESP8266, you need to make some changes:
 
-It is presented below how to update the file **6_iob** to use it in the Internet of Bananas. Before sending the code to ESP8266, you need to make some changes:
-
-- Name and password of the WiFi network, so that the device can connect to the internet;
+- specify the pins of the sensors, as explained in [5. Connecting the hardware pins](https://github.com/Internet-of-Bananas/installation-guide#5-connecting-the-hardware-pins);
+- the color calibration parameters; 
+- name and password of the WiFi network, so that the device can connect to the internet;
 - Adafruit IO server account login and key;
 
-### 3.1. The WiFi credentials
+### 6.1. The WiFi credentials
 To connect to the internet you need to specify the name and password of your WiFi network. To update the sketch with your name and password, locate the code below:
 
 ``` 
@@ -187,7 +202,7 @@ To connect to the internet you need to specify the name and password of your WiF
 
 Replace the `wifiName` with your WiFi name, and `wifiPassword` with your WiFi password, keeping the quotes. Write exactly how it is, with space and upper and lower case, if there are any.
 
-### 3.2. Adafruit IO credentials
+### 6.2. Adafruit IO credentials
 To access the Adafruit IO server you need to specify the user name and the key. If you don't have one, you can create it here [// https://accounts.adafruit.com/users/sign_up](https://accounts.adafruit.com/users/sign_up). To update the sketch, locate the code below:
 
 ``` 
@@ -204,7 +219,7 @@ To access the Adafruit IO server you need to specify the user name and the key. 
 
 Replace `username` with the user name of your account at Adafruit IO, and `key` with your account's key.
 
-### 3.3. Upload the code to the NodeMCU Esp8266
+### 6.3. Upload the code to the NodeMCU Esp8266
 After completing the code updates, connect the NodeMCU board to the computer with the USB cable. In the Arduino IDE, select the menu `Skecth > Upload`, or press `Ctrl + U` or `Command + U`. 
 
 To check if the code updates were successful, select `Tools > Serial monitor`. In the window that opens, in the lower right corner, select speed `9600`.
@@ -215,13 +230,13 @@ In addition, you can check the feeds on your [Adafruit IO](https://io.adafruit.c
 
 After confirming that the updates have been well succeeded, you can set the feed as public and create a dashboard on Adafruit IO.
 
-## 4. Adafruit IO
-### 4.1. Set the feeds as public
+## 7. Adafruit IO
+### 7.1. Set the feeds as public
 To display your data on the Internet of Bananas map we kindly ask you to set the privacy of your feeds as public and inform us your username, so we can use the API `https://io.adafruit.com/api/v2/<username>/feeds` to get the color, temperature and humidity data. 
 
 To set the feed as public, go to [https://io.adafruit.com](https://io.adafruit.com), select the menu `Feeds` and the `view all` to view all the feeds. Click on the name of the feed **color**, to open the feed's page. On the right side of the screen, select `Privacy` and the change de visibilty to `Public`. Repeat the same proceadure with the other two feeds.
 
-### 4.2 Create a dashboard
+### 7.2 Create a dashboard
 To visualize the data from your IoB you can create a dashboard at your Adafruit IO account. To do so, go to [https://io.adafruit.com](https://io.adafruit.com), select the menu `Dashboards`, and the `view all` to view all the dashboards. Click on the button `+ New Dashboard`, and give it a name and click on `Create`. Then click on the name of the dashboard you just created to open its page. You can choose your own layout of dashboard. As example, we suggest to have a stream of data, a color indicator and charts.
 
 To create a stream of data block, click on the gear icon, in the right top corner of the screen, and choose `Create New Block`, in the options listed, choose `Stream` and select the color, temperature and humidity feeds, and go to the `Next step`. In the following window, give a title to the stream block and click `Create block`. 
@@ -234,7 +249,7 @@ After you have created the blocks, you can adjust the layout by click on the gea
 
 If you want to share your dashboard with friends, go again on the gear icon and select `Dashboard Privacy` to unlock it, and still in the *gear* options, click on `Share Links` to copy the URL of you dashboard.
 
-## 5. Assembling the device on the banana
+## 8. Assembling the device on the banana
 The NodeMCU board and the sensors should be attached to the banana using the rubber band or a tape. 
 
 The color sensor should face the banana skin and should be placed close to the banana, with the leds from the sensor touching the banana. To avoid light interferences, we recommend to put a opaque and dark tape around the sensor, creating a "wall", so there's no other source of light reaching the sensor.
