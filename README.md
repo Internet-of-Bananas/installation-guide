@@ -276,9 +276,9 @@ As we previously warned about, do not place NodeMCU and the sensor on a metal or
 If you have any question, please contact us at internetofbananas@gmail.com.
 
 ## 9. Update to fix the color conversion
-There is an issue in the code in the color conversion from decimal to hexadecimal. The hexadecimal color has to have the # symbol plus six digits, otherwise the color will be displayed black. The problem happens when the **decimal** value is less than 16, resulting in a **hexadecimal** value with less than five digits. 
+There is an issue in the code in the color conversion from decimal to hexadecimal. The hexadecimal color has to have the # symbol plus six digits, otherwise the color will be displayed black. The problem happens when the **decimal** value is less than 16, resulting in a **hexadecimal** value with less than six digits. 
 
-For example, the decimal RGB color `201, 94, 13` should be converted as `c9 5e 0d` in the hexadecimal format, but it's converted as `c9 5e d`, the "0" is omitted in the conversion, thus the final number has only 5 digits. To guarantee that the hexadecimal color has always 6 digits, we created an `if` statement that will verify the number and do the correction when it's necessary.
+For example, the decimal RGB color `201, 94, 13` should be converted as `c9 5e 0d` in the hexadecimal format, but in the IoB code it's converted as `c9 5e d`, the "0" is omitted in the conversion, thus the final number has only 5 digits. To guarantee that the hexadecimal color has always 6 digits, we created an `if` statement that will verify the number and do the correction when it's necessary.
 
 To fix this bug, in the Arduino IDE open the file `6_iob` (if you saved it with another name, open it. Just to remind you, this file should already have your wifi network and password, Adafruit IO user name and key, and the color calibration p ameters). Locate the following code shown bellow:
 
