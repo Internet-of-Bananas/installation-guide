@@ -282,7 +282,8 @@ For example, the decimal RGB color `201, 94, 13` should be converted as `c9 5e 0
 
 To fix this bug, in the Arduino IDE open the file `6_iob` (if you saved it with another name, open it. Just to remind you, this file should already have your wifi network and password, Adafruit IO user name and key, and the color calibration p ameters). Locate the following code shown bellow:
 
-``` /*
+``` 
+  /*
     In order to visualize the color in the Adafrui. Latform
     it's necessary to convert the color decimal number to the hexadecimal format.
     (The decimal is 0 to 9, and hexadecimal is 0 to F)
@@ -317,7 +318,7 @@ To fix this bug, in the Arduino IDE open the file `6_iob` (if you saved it with 
 ``` 
 And substitute it with:
 ```
-/*
+  /*
     In order to visualize the color in the Adafruit IO platform
     it's necessary to convert the color decimal number to the hexadecimal format.
     (The decimal is 0 to 9, and hexadecimal is 0 to F)
